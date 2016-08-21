@@ -53,7 +53,7 @@ extension ViewController: SAPinViewControllerDelegate {
 ## Screenshots
 <img src="4s.png" width="49%" />
 <img src="6.png" width="69%" />
-<img src="6plus.png" width="79%" />
+<img src="6Plus.png" width="79%" />
 <img src="5.png" width="59%" />
 <img src="ipad-landscape.png" width="66%" />
 <img src="iPad-potrait.png" width="66%" />
