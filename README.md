@@ -51,17 +51,29 @@ extension ViewController: SAPinViewControllerDelegate {
 ```
 ## Screenshots
 iPhone 4
+
 <img src="4s.png" width="49%" />
+
 iPhone 5
+
 <img src="5.png" width="59%" />
+
 iPhone 6
+
 <img src="6.png" width="69%" />
+
 iPhone 6 plus
+
 <img src="6Plus.png" width="79%" />
+
 iPad landscape
+
 <img src="ipad-landscape.png" width="66%" />
+
 iPad portrait
+
 <img src="iPad-potrait.png" width="66%" />
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
