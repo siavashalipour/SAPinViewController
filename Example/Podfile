@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SAPinViewController_Example' do
+  pod 'SAPinViewController', :path => '../'
+
+  target 'SAPinViewController_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
