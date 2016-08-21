@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="SAPinViewController_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +17,76 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KXw-az-srf">
+                                <rect key="frame" x="252" y="64" width="97" height="30"/>
+                                <color key="backgroundColor" red="0.81993189102564101" green="0.033796833658692967" blue="0.57361979512442884" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="nW3-7g-YFf"/>
+                                    <constraint firstAttribute="width" constant="97" id="rNV-dS-qwR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="3ad-w5-Jsg"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AAY-dY-ZYG">
+                                <rect key="frame" x="31" y="116" width="538" height="40"/>
+                                <color key="backgroundColor" red="0.54027834118272811" green="0.69199782212416394" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="1SF-M9-QQ9"/>
+                                </constraints>
+                                <state key="normal" title="Set Pin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="setPinTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="U3W-pX-PV0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDO-MI-I0P">
+                                <rect key="frame" x="31" y="172" width="538" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.41714840272064924" blue="0.40504264154329006" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="kBh-nU-0I5"/>
+                                </constraints>
+                                <state key="normal" title="Lock">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="lockTap:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9KN-Be-1VG"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AAY-dY-ZYG" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="11" id="3LK-fM-E9o"/>
+                            <constraint firstItem="KXw-az-srf" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Ghe-EQ-5v4"/>
+                            <constraint firstItem="AAY-dY-ZYG" firstAttribute="top" secondItem="KXw-az-srf" secondAttribute="bottom" constant="22" id="J02-1n-xGE"/>
+                            <constraint firstItem="gDO-MI-I0P" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="11" id="dJJ-w9-Ii1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gDO-MI-I0P" secondAttribute="trailing" constant="11" id="pze-AR-Dmk"/>
+                            <constraint firstItem="gDO-MI-I0P" firstAttribute="top" secondItem="AAY-dY-ZYG" secondAttribute="bottom" constant="16" id="rHS-o1-UOa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AAY-dY-ZYG" secondAttribute="trailing" constant="11" id="toz-6C-VKI"/>
+                            <constraint firstItem="KXw-az-srf" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="44" id="zgP-Hw-bAW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pinTextField" destination="KXw-az-srf" id="aDg-v7-tUZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="470" y="426"/>
         </scene>
     </scenes>
 </document>

@@ -1,0 +1,6 @@
+framework module SAPinViewController {
+  umbrella header "SAPinViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}

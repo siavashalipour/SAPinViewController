@@ -9,24 +9,21 @@
 Pod::Spec.new do |s|
   s.name             = 'SAPinViewController'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of SAPinViewController.'
+  s.summary          = 'Simple, easy to use and fully customisable PIN Screen'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+Swifty PIN view for iOS.
+Simple and easy to use iOS 7 PIN screen. This simple library allows you to draw a fully customisable PIN screen same as the iOS default PIN view.
+My inspiration to create this library was form [THPinViewController](https://github.com/antiraum/THPinViewController), however ```SAPinViewController``` is completyly implemented in ```Swift 2.2```. Also the main purpose of creating this library was to have simple, easy to use and fully customisable PIN screen.
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/SAPinViewController'
+  s.homepage         = 'https://github.com/siavashalipour/SAPinViewController'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Siavash' => 'siavash@siavashalipour.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/SAPinViewController.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/siavashalipour/SAPinViewController.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
 
@@ -36,7 +33,7 @@ TODO: Add long description of the pod here.
   #   'SAPinViewController' => ['SAPinViewController/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  # s.public_header_files = 'Pod/Classes/**/*.swift'
+   s.frameworks = 'UIKit'
+   s.dependency 'SnapKit'
 end
