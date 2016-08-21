@@ -9,15 +9,37 @@
 import UIKit
 import SnapKit
 
+/// SAPinViewControllerDelegate
+/// Any ViewController that would like to present `SAPinViewController` should implement
+/// all these protocol methods
 public protocol SAPinViewControllerDelegate {
+    
+    /// Gets called upon tapping on `Cancel` button 
+    /// required and must be implemented
     func pinEntryWasCancelled()
+    
+    /// Gets called if the enterd PIN returned `true` passing it to `isPinValid(pin: String) -> Bool`
+    /// required and must be implemented
     func pinEntryWasSuccessful()
+    
+    /// Gets called if the enterd PIN returned `false` passing it to `isPinValid(pin: String) -> Bool`
+    /// required and must be implemented
     func pinWasIncorrect()
+    
+    /// Ask the implementer to see whether the PIN is valid or not
+    /// required and must be implemented
     func isPinValid(pin: String) -> Bool
 }
 
+/// SAPinViewController
+/// Use this class to instantiate a PIN screen
+/// Set each one of its property for customisation
+/// N.B: UNLY use the Designate initialaiser
 public class SAPinViewController: UIViewController {
     
+    ///  Set this to customise the border colour around the dots
+    /// This will set the dots fill colour as well
+    /// Default is white colour
     public var circleBorderColor: UIColor! {
         didSet {
             if circleViews.count > 0 {
@@ -28,6 +50,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to change the font of PIN numbers and alphabet
+    /// Note that the maximum font size for numbers are 30.0 and for alphabets are 10.0
     public var font: UIFont! {
         didSet {
             if buttons.count > 0 {
@@ -38,6 +62,7 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this if you want to hide the alphabets - default is to show alphabet
     public var showAlphabet: Bool! {
         didSet {
             if buttons.count > 0 {
@@ -48,6 +73,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise the border colour around the PIN numbers
+    /// Default is white
     public var buttonBorderColor: UIColor! {
         didSet {
             if buttons.count > 0 {
@@ -58,6 +85,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise the PIN numbers colour
+    /// Default is white
     public var numberColor: UIColor! {
         didSet {
             if buttons.count > 0 {
@@ -68,6 +97,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise the alphabet colour
+    /// Default is white
     public var alphabetColor: UIColor! {
         didSet {
             if buttons.count > 0 {
@@ -78,6 +109,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to add subtitle text for the `SAPinViewController`
+    /// Default is empty String
     public var subtitleText: String! {
         didSet {
             if subtitleLabel != nil {
@@ -88,6 +121,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to add title text for the `SAPinViewController`
+    /// Default is "Enter Passcode"
     public var titleText: String! {
         didSet {
             if titleLabel != nil {
@@ -97,6 +132,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise subtitle text colour for the `SAPinViewController`
+    /// Default is white
     public var subtitleTextColor: UIColor! {
         didSet {
             if subtitleLabel != nil {
@@ -105,6 +142,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise title text colour for the `SAPinViewController`
+    /// Default is white
     public var titleTextColor: UIColor! {
         didSet {
             if titleLabel != nil {
@@ -113,6 +152,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise `Cancel` button text colour
+    /// Default is white
     public var cancelButtonColor: UIColor! {
         didSet {
             if cancelButton != nil {
@@ -122,6 +163,8 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to customise `Cancel` button text font
+    /// Maximum font size is 17.0
     public var cancelButtonFont: UIFont! {
         didSet {
             if cancelButton != nil {
@@ -130,6 +173,7 @@ public class SAPinViewController: UIViewController {
             }
         }
     }
+    
     private var blurView: UIVisualEffectView!
     private var numPadView: UIView!
     private var buttons: [SAButtonView]! = []
@@ -143,11 +187,21 @@ public class SAPinViewController: UIViewController {
     private var delegate: SAPinViewControllerDelegate?
     private var backgroundImage: UIImage!
     
+    /// Designate initialaiser
+    ///
+    /// - parameter withDelegate:          user should pass itself as `SAPinViewControllerDelegate`
+    /// - parameter backgroundImage:       optional Image, by passing one, you will get a nice blur effect above that
+    /// - parameter backgroundColor:       optional Color, by passing one, you will get a solid backgournd color and the blur effect would be ignored
     public init(withDelegate: SAPinViewControllerDelegate, backgroundImage: UIImage? = nil, backgroundColor: UIColor? = nil) {
+        
         super.init(nibName: nil, bundle: nil)
         delegate = withDelegate
         if let safeImage = backgroundImage {
-            self.backgroundImage = safeImage
+            if let safeBGColor = backgroundColor {
+                self.view.backgroundColor = safeBGColor
+            } else {
+                self.backgroundImage = safeImage
+            }
         }
         if let safeBGColor = backgroundColor {
             self.view.backgroundColor = safeBGColor
@@ -158,7 +212,9 @@ public class SAPinViewController: UIViewController {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    public func setupUI() {
+    
+    /// Initial UI setup
+    func setupUI() {
         dotContainerWidth = 3 * SAPinConstant.ButtonWidth + 2 * SAPinConstant.ButtonPadding
         
         numPadView = UIView()
@@ -201,7 +257,7 @@ public class SAPinViewController: UIViewController {
         // Add Cancel Button
         addCancelButton()
     }
-    
+    // MARK: Private methods
     private func addButtons() {
         for i in 0...9 {
             let btnView = SAButtonView(frame: CGRect(x: 0, y: 0, width: SAPinConstant.ButtonWidth, height: SAPinConstant.ButtonWidth))
@@ -211,6 +267,7 @@ public class SAPinViewController: UIViewController {
             numPadView.addSubview(btnView)
         }
     }
+    
     private func layoutButtons() {
         for i in 0...9 {
             buttons[i].snp_makeConstraints(closure: { (make) in
@@ -390,12 +447,12 @@ public class SAPinViewController: UIViewController {
         }
         animateView()
     }
-    func animateView() {
+    private func animateView() {
         setOptions()
         animate()
     }
     
-    func setOptions() {
+    private func setOptions() {
         for item in circleViews {
             item.force = 2.2
             item.duration = 1
@@ -406,7 +463,7 @@ public class SAPinViewController: UIViewController {
         }
     }
     
-    func animate() {
+    private func animate() {
         for item in circleViews {
             item.animateFrom = true
             item.animatePreset()

@@ -8,19 +8,18 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SAPinViewController'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Simple, easy to use and fully customisable PIN Screen'
 
 
 
   s.description      = <<-DESC
-Swifty PIN view for iOS.
-Simple and easy to use iOS 7 PIN screen. This simple library allows you to draw a fully customisable PIN screen same as the iOS default PIN view.
-My inspiration to create this library was form [THPinViewController](https://github.com/antiraum/THPinViewController), however ```SAPinViewController``` is completyly implemented in ```Swift 2.2```. Also the main purpose of creating this library was to have simple, easy to use and fully customisable PIN screen.
+Simple and easy to use default iOS PIN screen. This simple library allows you to draw a fully customisable PIN screen same as the iOS default PIN view.
+My inspiration to create this library was form [THPinViewController](https://github.com/antiraum/THPinViewController), however ```SAPinViewController``` is completely implemented in ```Swift```. Also the main purpose of creating this library was to have simple, easy to use and fully customisable PIN screen.
                        DESC
 
   s.homepage         = 'https://github.com/siavashalipour/SAPinViewController'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  # s.screenshots     = 'https://github.com/siavashalipour/SAPinViewController/blob/master/6Plus.png', 'https://github.com/siavashalipour/SAPinViewController/blob/master/ipad-landscape.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Siavash' => 'siavash@siavashalipour.com' }
   s.source           = { :git => 'https://github.com/siavashalipour/SAPinViewController.git', :tag => s.version.to_s }
