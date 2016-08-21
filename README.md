@@ -1,6 +1,6 @@
 # SAPinViewController
 
-[![CI Status](http://img.shields.io/travis/Siavash/SAPinViewController.svg?style=flat)](https://travis-ci.org/siavashalipour/SAPinViewController.svg?branch=master)
+[![CI Status](http://img.shields.io/travis/Siavash/SAPinViewController.svg?style=flat)](https://travis-ci.org/siavashalipour/SAPinViewController)
 [![Version](https://img.shields.io/cocoapods/v/SAPinViewController.svg?style=flat)](http://cocoapods.org/pods/SAPinViewController)
 [![License](https://img.shields.io/cocoapods/l/SAPinViewController.svg?style=flat)](http://cocoapods.org/pods/SAPinViewController)
 [![Platform](https://img.shields.io/cocoapods/p/SAPinViewController.svg?style=flat)](http://cocoapods.org/pods/SAPinViewController)
