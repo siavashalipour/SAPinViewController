@@ -24,18 +24,17 @@ My inspiration to create this library was form [THPinViewController](https://git
 	
 ## Usage
 ```swift
-
-            // initial a "SAPinViewController" via the designate initialiser
-            let pinVC = SAPinViewController(withDelegate: self, backgroundImage: UIImage(named: "bg3"))
-            // setup different properties
-            pinVC.subtitleText = "Your passcode is required to enable Touch ID"
-            pinVC.buttonBorderColor = UIColor.whiteColor()
-            pinVC.alphabetColor = UIColor.whiteColor()
-            pinVC.showAlphabet = true // default is true
-            // ... and other properties
-            // present it
-            presentViewController(pinVC, animated: true, completion: nil)
-            // implement delegate methods
+// initial a "SAPinViewController" via the designate initialiser
+let pinVC = SAPinViewController(withDelegate: self, backgroundImage: UIImage(named: "bg3"))
+// setup different properties
+pinVC.subtitleText = "Your passcode is required to enable Touch ID"
+pinVC.buttonBorderColor = UIColor.whiteColor()
+pinVC.alphabetColor = UIColor.whiteColor()
+pinVC.showAlphabet = true // default is true
+// ... and other properties
+// present it
+presentViewController(pinVC, animated: true, completion: nil)
+// implement delegate methods
 extension ViewController: SAPinViewControllerDelegate {
     func pinEntryWasCancelled() {
         dismissViewControllerAnimated(true, completion: nil)
@@ -51,8 +50,13 @@ extension ViewController: SAPinViewControllerDelegate {
     }
 }
 ```
-
-see the expamle project for more details. 
+## Screenshots
+<img src="4s.png" width="49%" />
+<img src="6.png" width="69%" />
+<img src="6plus.png" width="79%" />
+<img src="5.png" width="59%" />
+<img src="ipad-landscape.png" width="66%" />
+<img src="iPad-potrait.png" width="66%" />
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
