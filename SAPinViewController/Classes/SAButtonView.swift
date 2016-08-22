@@ -84,6 +84,12 @@ class SAButtonView: UIView {
         }
     }
     
+    var isRoundedRect: Bool! {
+        didSet {
+            layer.cornerRadius = (isRoundedRect == true) ? frame.size.width/4.0 : frame.size.width/2.0
+        }
+    }
+    
     private var numberLabel: UILabel!
     private var alphabetLabel: UILabel!
     

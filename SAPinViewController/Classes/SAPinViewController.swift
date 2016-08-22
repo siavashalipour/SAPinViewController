@@ -174,6 +174,24 @@ public class SAPinViewController: UIViewController {
         }
     }
     
+    /// Set this to `true` to get rounded rect boarder style
+    public var isRoundedRect: Bool! {
+        didSet {
+            if let safeIsRoundedRect = isRoundedRect {
+                if buttons.count > 0 {
+                    for i in 0...9 {
+                        buttons[i].isRoundedRect = safeIsRoundedRect
+                    }
+                }
+                if circleViews.count > 0  {
+                    for i in 0...3 {
+                        circleViews[i].isRoundedRect = safeIsRoundedRect
+                    }
+                }
+            }
+        }
+    }
+    
     private var blurView: UIVisualEffectView!
     private var numPadView: UIView!
     private var buttons: [SAButtonView]! = []

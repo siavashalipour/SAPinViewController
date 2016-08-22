@@ -63,6 +63,7 @@ class ViewController: UIViewController {
             pinVC.alphabetColor = UIColor.orangeColor()
             pinVC.numberColor = UIColor.yellowColor()
             pinVC.cancelButtonColor = UIColor.redColor()
+            pinVC.isRoundedRect = true
             // ... and other properties
             // present it
             presentViewController(pinVC, animated: true, completion: nil)

@@ -36,6 +36,11 @@ class SACircleView: UIView {
             layer.borderColor = circleBorderColor.colorWithAlphaComponent(0.8).CGColor
         }
     }
+    var isRoundedRect: Bool! {
+        didSet {
+            layer.cornerRadius = (isRoundedRect == true) ? frame.size.width/4.0 : frame.size.width/2.0
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         circleBorderColor = UIColor.whiteColor()
