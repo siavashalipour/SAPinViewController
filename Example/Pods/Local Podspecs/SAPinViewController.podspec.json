@@ -2,7 +2,7 @@
   "name": "SAPinViewController",
   "version": "0.1.0",
   "summary": "Simple, easy to use and fully customisable PIN Screen",
-  "description": "Swifty PIN view for iOS.\nSimple and easy to use iOS 7 PIN screen. This simple library allows you to draw a fully customisable PIN screen same as the iOS default PIN view.\nMy inspiration to create this library was form [THPinViewController](https://github.com/antiraum/THPinViewController), however ```SAPinViewController``` is completyly implemented in ```Swift 2.2```. Also the main purpose of creating this library was to have simple, easy to use and fully customisable PIN screen.",
+  "description": "Simple and easy to use default iOS PIN screen. This simple library allows you to draw a fully customisable PIN screen same as the iOS default PIN view.\nMy inspiration to create this library was form [THPinViewController](https://github.com/antiraum/THPinViewController), however ```SAPinViewController``` is completely implemented in ```Swift```. Also the main purpose of creating this library was to have simple, easy to use and fully customisable PIN screen.",
   "homepage": "https://github.com/siavashalipour/SAPinViewController",
   "license": {
     "type": "MIT",

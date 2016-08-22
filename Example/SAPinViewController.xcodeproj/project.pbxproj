@@ -166,12 +166,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SAPinViewController_Example" */;
 			buildPhases = (
+				9B5B693CCFADA5487BE652C1 /* 📦 Check Pods Manifest.lock */,
 				0BA4A5DEB13D13B8F9B52B33 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				0CB97A5AC81E0ED093AF5747 /* [CP] Embed Pods Frameworks */,
 				A4EB97FD5E906E3C6AD9FCD5 /* [CP] Copy Pods Resources */,
+				90F7EF7E316430740E133F23 /* 📦 Embed Pods Frameworks */,
+				007D274DB538420C20CE5D7C /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -186,12 +189,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "SAPinViewController_Tests" */;
 			buildPhases = (
+				3F7101E849E0F117756B6130 /* 📦 Check Pods Manifest.lock */,
 				A6846157AE478614E29F0FE8 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				4C765785154A0A07CE8A82A9 /* [CP] Embed Pods Frameworks */,
 				DE53A2305901B2CF2D4D3CD5 /* [CP] Copy Pods Resources */,
+				87B28A10BE9C39A86A348C1A /* 📦 Embed Pods Frameworks */,
+				5F21AD162C479397453B7D0A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,6 +268,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		007D274DB538420C20CE5D7C /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SAPinViewController_Example/Pods-SAPinViewController_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0BA4A5DEB13D13B8F9B52B33 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -292,6 +313,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SAPinViewController_Example/Pods-SAPinViewController_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3F7101E849E0F117756B6130 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		4C765785154A0A07CE8A82A9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -305,6 +341,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SAPinViewController_Tests/Pods-SAPinViewController_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F21AD162C479397453B7D0A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SAPinViewController_Tests/Pods-SAPinViewController_Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87B28A10BE9C39A86A348C1A /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SAPinViewController_Tests/Pods-SAPinViewController_Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90F7EF7E316430740E133F23 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SAPinViewController_Example/Pods-SAPinViewController_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B5B693CCFADA5487BE652C1 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A4EB97FD5E906E3C6AD9FCD5 /* [CP] Copy Pods Resources */ = {
@@ -516,10 +612,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E78CEBB0893ADB8DCA50788A /* Pods-SAPinViewController_Tests.debug.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -528,6 +621,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SAPinViewController_Example.app/SAPinViewController_Example";
 			};
 			name = Debug;
 		};
@@ -535,14 +629,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE9E94C0599A4D524FD7CE78 /* Pods-SAPinViewController_Tests.release.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SAPinViewController_Example.app/SAPinViewController_Example";
 			};
 			name = Release;
 		};
