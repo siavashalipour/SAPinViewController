@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+/// Thanks to https://github.com/MengTo/Spring
+/// vary simplified version of Spring
 class SACircleView: UIView {
     
     var autostart: Bool = false
