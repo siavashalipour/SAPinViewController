@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     @IBAction func lockTap(sender: UIButton) {
         if canShowPIN() {
             // initial a `SAPinViewController` via the designate initialiser
-            let pinVC = SAPinViewController(withDelegate: self, backgroundImage: UIImage(named: "bg3"))
+            let pinVC = SAPinViewController(withDelegate: self, backgroundImage: UIImage(named: "bg3"), backgroundColor: nil, logoImage: UIImage(named: "logo"))
             // setup different properties
             pinVC.subtitleText = "Your passcode is required to enable Touch ID"
             pinVC.buttonBorderColor = UIColor(red: 209/255.0, green: 9/255.0, blue: 146/255.0, alpha: 1.0)

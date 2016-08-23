@@ -19,4 +19,5 @@ struct SAPinConstant {
     static let DefaultFontName = "PingFang-TC-Regular"
     static let MaxNumberFontSize:CGFloat = 30
     static let MaxAlphabetFontSize: CGFloat = 10
+    static let LogoImageWidth: CGFloat = 60
 }

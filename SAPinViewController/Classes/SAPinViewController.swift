@@ -204,13 +204,15 @@ public class SAPinViewController: UIViewController {
     private var tappedButtons: [Int] = []
     private var delegate: SAPinViewControllerDelegate?
     private var backgroundImage: UIImage!
+    private var logoImage: UIImage!
     
     /// Designate initialaiser
     ///
     /// - parameter withDelegate:          user should pass itself as `SAPinViewControllerDelegate`
     /// - parameter backgroundImage:       optional Image, by passing one, you will get a nice blur effect above that
     /// - parameter backgroundColor:       optional Color, by passing one, you will get a solid backgournd color and the blur effect would be ignored
-    public init(withDelegate: SAPinViewControllerDelegate, backgroundImage: UIImage? = nil, backgroundColor: UIColor? = nil) {
+    /// - parameter logoImage:             optional Image, by passing one, you will get a circled logo on top, please pass a square size image. not available for 3.5inch screen
+    public init(withDelegate: SAPinViewControllerDelegate, backgroundImage: UIImage? = nil, backgroundColor: UIColor? = nil, logoImage: UIImage? = nil) {
         
         super.init(nibName: nil, bundle: nil)
         delegate = withDelegate
@@ -223,6 +225,11 @@ public class SAPinViewController: UIViewController {
         }
         if let safeBGColor = backgroundColor {
             self.view.backgroundColor = safeBGColor
+        }
+        if let safeLogoImage = logoImage {
+            if !self.isSmallScreen() {
+                self.logoImage = safeLogoImage
+            }
         }
         self.setupUI()
     }
@@ -256,7 +263,11 @@ public class SAPinViewController: UIViewController {
             make.width.equalTo(dotContainerWidth)
             make.height.equalTo(4 * SAPinConstant.ButtonWidth + 3 * SAPinConstant.ButtonPadding)
             make.centerX.equalTo(blurView.snp_centerX)
-            make.centerY.equalTo(blurView.snp_centerY).offset(2*SAPinConstant.ButtonPadding)
+            if logoImage != nil {
+                make.centerY.equalTo(blurView.snp_centerY).offset(2*SAPinConstant.ButtonPadding + SAPinConstant.LogoImageWidth)
+            } else {
+                make.centerY.equalTo(blurView.snp_centerY).offset(2*SAPinConstant.ButtonPadding)
+            }
         }
         // Add buttons
         addButtons()
@@ -272,6 +283,10 @@ public class SAPinViewController: UIViewController {
         // Add title label
         addTitle()
         
+        // Add logo
+        if logoImage != nil {
+            addLogo()
+        }
         // Add Cancel Button
         addCancelButton()
     }
@@ -414,6 +429,19 @@ public class SAPinViewController: UIViewController {
             make.centerX.equalTo(blurView.snp_centerX)
         }
     }
+    private func addLogo() {
+        let logoImageView = UIImageView(image: logoImage)
+        blurView.addSubview(logoImageView)
+        logoImageView.contentMode = .ScaleAspectFit
+        logoImageView.layer.cornerRadius = SAPinConstant.LogoImageWidth/2.0
+        logoImageView.clipsToBounds = true
+        logoImageView.snp_makeConstraints { (make) in
+            make.width.equalTo(SAPinConstant.LogoImageWidth)
+            make.height.equalTo(SAPinConstant.LogoImageWidth)
+            make.centerX.equalTo(blurView.snp_centerX)
+            make.bottom.equalTo(titleLabel.snp_top).offset(-8)
+        }
+    }
     private func addCancelButton() {
         cancelButton = UIButton(type: .Custom)
         cancelButtonColor = titleLabel.textColor
@@ -425,10 +453,14 @@ public class SAPinViewController: UIViewController {
             make.trailing.equalTo(numPadView.snp_trailing)
             if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
                 // 3.5" special case 
-                if UIScreen.mainScreen().bounds.height == 480 {
+                if isSmallScreen() {
                     make.bottom.equalTo(numPadView)
                 } else {
-                    make.bottom.equalTo(numPadView).offset(SAPinConstant.ButtonWidth)
+                    if logoImage != nil {
+                        make.bottom.equalTo(numPadView).offset(SAPinConstant.ButtonWidth - SAPinConstant.LogoImageWidth)
+                    } else {
+                        make.bottom.equalTo(numPadView).offset(SAPinConstant.ButtonWidth)
+                    }
                 }
             } else {
                 make.bottom.equalTo(numPadView)
@@ -448,6 +480,9 @@ public class SAPinViewController: UIViewController {
         } else {
             delegate?.pinEntryWasCancelled()
         }
+    }
+    private func isSmallScreen() -> Bool {
+        return UIScreen.mainScreen().bounds.height == 480
     }
     private func setAttributedTitleForButtonWithTitle(title: String, font: UIFont, color: UIColor) {
         cancelButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSFontAttributeName:font,NSForegroundColorAttributeName:color]), forState: .Normal)

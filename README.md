@@ -20,6 +20,9 @@ My inspiration to create this library was form [THPinViewController](https://git
 	- add custom image as background and gets blurred automatically
 	- hide alphabets
 	- change cancel button font/colour
+	- ###### NEW in 0.1.2: 
+		- now you can have your logo on top as well
+		- now you can have rounded rect as well as circle type UI
 	
 ## Usage
 ```swift
@@ -50,6 +53,10 @@ extension ViewController: SAPinViewControllerDelegate {
 }
 ```
 ## Screenshots
+With Logo:
+
+<img src="6PlusLogo.png" width="79%" />
+
 iPhone 4
 
 <img src="4s.png" width="49%" />
