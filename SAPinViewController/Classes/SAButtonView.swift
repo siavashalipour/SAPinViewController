@@ -12,7 +12,7 @@ import SnapKit
 
 protocol SAButtonViewDelegate {
     
-    func buttonTappedWithTag(tag: Int)
+    func buttonTappedWithTag(_ tag: Int)
 }
 
 class SAButtonView: UIView {
@@ -21,8 +21,8 @@ class SAButtonView: UIView {
     
     var font: UIFont! {
         didSet {
-            numberLabel.font = font.fontWithSize(SAPinConstant.MaxNumberFontSize)
-            alphabetLabel.font = font.fontWithSize(SAPinConstant.MaxAlphabetFontSize)
+            numberLabel.font = font.withSize(SAPinConstant.MaxNumberFontSize)
+            alphabetLabel.font = font.withSize(SAPinConstant.MaxAlphabetFontSize)
         }
     }
     
@@ -37,7 +37,7 @@ class SAButtonView: UIView {
     
     var buttonBorderColor: UIColor! {
         didSet {
-            layer.borderColor = buttonBorderColor.colorWithAlphaComponent(0.8).CGColor
+            layer.borderColor = buttonBorderColor.withAlphaComponent(0.8).cgColor
         }
     }
     
@@ -53,7 +53,7 @@ class SAButtonView: UIView {
         }
     }
     
-    var numberTag: Int! {
+    var numberTag: Int = 0 {
         didSet {
             numberLabel.text = "\(numberTag)"
             layoutButtonNumber()
@@ -90,17 +90,17 @@ class SAButtonView: UIView {
         }
     }
     
-    private var numberLabel: UILabel!
-    private var alphabetLabel: UILabel!
+    fileprivate var numberLabel: UILabel!
+    fileprivate var alphabetLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Default values
         font = UIFont(name: SAPinConstant.DefaultFontName, size: SAPinConstant.MaxNumberFontSize)
-        buttonBorderColor = UIColor.whiteColor()
+        buttonBorderColor = UIColor.white
         showAlphabet = true
-        numberColor = UIColor.whiteColor()
-        alphabetColor = UIColor.whiteColor()
+        numberColor = UIColor.white
+        alphabetColor = UIColor.white
         
         setupSubViews()
     }
@@ -108,8 +108,8 @@ class SAButtonView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    private func layoutButtonNumber() {
-        numberLabel.snp_remakeConstraints { (make) in
+    fileprivate func layoutButtonNumber() {
+        numberLabel.snp.remakeConstraints { (make) in
             make.top.equalTo(self)
             make.left.equalTo(self)
             make.right.equalTo(self)
@@ -120,29 +120,29 @@ class SAButtonView: UIView {
             }
         }
     }
-    private func layoutAlphabet() {
-        alphabetLabel.snp_remakeConstraints { (make) in
+    fileprivate func layoutAlphabet() {
+        alphabetLabel.snp.remakeConstraints { (make) in
             make.bottom.equalTo(self).offset(-11)
             make.left.equalTo(self)
             make.right.equalTo(self)
         }
     }
-    private func setupSubViews() {
+    fileprivate func setupSubViews() {
         layer.cornerRadius = frame.size.width/2.0
         layer.borderWidth = 1
-        layer.borderColor = buttonBorderColor.colorWithAlphaComponent(0.8).CGColor
+        layer.borderColor = buttonBorderColor.withAlphaComponent(0.8).cgColor
         numberLabel = UILabel()
         addSubview(numberLabel)
         numberLabel.textColor = numberColor
-        numberLabel.textAlignment = .Center
-        numberLabel.font = font.fontWithSize(SAPinConstant.MaxNumberFontSize)
+        numberLabel.textAlignment = .center
+        numberLabel.font = font.withSize(SAPinConstant.MaxNumberFontSize)
         numberLabel.text = "9"
         
         alphabetLabel = UILabel()
         addSubview(alphabetLabel)
         alphabetLabel.textColor = alphabetColor
-        alphabetLabel.textAlignment = .Center
-        alphabetLabel.font = font.fontWithSize(SAPinConstant.MaxAlphabetFontSize)
+        alphabetLabel.textAlignment = .center
+        alphabetLabel.font = font.withSize(SAPinConstant.MaxAlphabetFontSize)
         alphabetLabel.text = "WXYZ"
         numberTag = 0
         layoutAlphabet()
@@ -150,20 +150,20 @@ class SAButtonView: UIView {
         
         let btn = UIButton()
         addSubview(btn)
-        btn.snp_makeConstraints { (make) in
+        btn.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
-        btn.addTarget(self, action: #selector(self.btnTap), forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: #selector(self.btnTap), for: .touchUpInside)
     }
     
     func btnTap() {
         delegate?.buttonTappedWithTag(numberTag)
-        UIView.animateWithDuration(0.17, delay: 0, options: .CurveEaseIn, animations: {
-            self.backgroundColor = self.buttonBorderColor.colorWithAlphaComponent(0.4)
+        UIView.animate(withDuration: 0.17, delay: 0, options: .curveEaseIn, animations: {
+            self.backgroundColor = self.buttonBorderColor.withAlphaComponent(0.4)
         }) { (isFinish) in
             if isFinish {
-                UIView.animateWithDuration(0.17, delay: 0.1, options: .CurveEaseOut, animations: {
-                    self.backgroundColor = UIColor.clearColor()
+                UIView.animate(withDuration: 0.17, delay: 0.1, options: .curveEaseOut, animations: {
+                    self.backgroundColor = UIColor.clear
                     }, completion: nil)
             }
         }

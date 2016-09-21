@@ -33,7 +33,7 @@ class SACircleView: UIView {
     
     var circleBorderColor: UIColor! {
         didSet {
-            layer.borderColor = circleBorderColor.colorWithAlphaComponent(0.8).CGColor
+            layer.borderColor = circleBorderColor.withAlphaComponent(0.8).cgColor
         }
     }
     var isRoundedRect: Bool! {
@@ -43,10 +43,10 @@ class SACircleView: UIView {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        circleBorderColor = UIColor.whiteColor()
-        layer.borderColor = circleBorderColor.colorWithAlphaComponent(0.8).CGColor
+        circleBorderColor = UIColor.white
+        layer.borderColor = circleBorderColor.withAlphaComponent(0.8).cgColor
         layer.borderWidth = 1
-        backgroundColor = UIColor.clearColor()
+        backgroundColor = UIColor.clear
         layer.cornerRadius = SAPinConstant.CircleWidth/2.0
     }
     
@@ -60,50 +60,50 @@ class SACircleView: UIView {
         animation.keyTimes = [0, 0.2, 0.4, 0.6, 0.8, 1]
         animation.timingFunction = CAMediaTimingFunction(controlPoints: 0.5, 1.1+Float(force/3), 1, 1)
         animation.duration = CFTimeInterval(duration)
-        animation.additive = true
+        animation.isAdditive = true
         animation.repeatCount = repeatCount
         animation.beginTime = CACurrentMediaTime() + CFTimeInterval(delay)
-        layer.addAnimation(animation, forKey: "shake")
+        layer.add(animation, forKey: "shake")
     }
     func animateTapFull() {
-        UIView.animateWithDuration(0.17, delay: 0, options: .CurveEaseIn, animations: {
-            self.backgroundColor = self.circleBorderColor.colorWithAlphaComponent(0.6)
+        UIView.animate(withDuration: 0.17, delay: 0, options: .curveEaseIn, animations: {
+            self.backgroundColor = self.circleBorderColor.withAlphaComponent(0.6)
         }) { (_) in}
     }
     func animateTapEmpty() {
-        UIView.animateWithDuration(0.17, delay: 0, options: .CurveEaseIn, animations: {
-            self.backgroundColor = UIColor.clearColor()
+        UIView.animate(withDuration: 0.17, delay: 0, options: .curveEaseIn, animations: {
+            self.backgroundColor = UIColor.clear
         }) { (_) in}
     }
-    func setView(completion: () -> ()) {
+    func setView(_ completion: @escaping () -> ()) {
         if animateFrom {
-            let translate = CGAffineTransformMakeTranslation(x, y)
-            let scale = CGAffineTransformMakeScale(1, 1)
-            let rotate = CGAffineTransformMakeRotation(self.rotate)
-            let translateAndScale = CGAffineTransformConcat(translate, scale)
-            transform = CGAffineTransformConcat(rotate, translateAndScale)
+            let translate = CGAffineTransform(translationX: x, y: y)
+            let scale = CGAffineTransform(scaleX: 1, y: 1)
+            let rotate = CGAffineTransform(rotationAngle: self.rotate)
+            let translateAndScale = translate.concatenating(scale)
+            transform = rotate.concatenating(translateAndScale)
             
             alpha = opacity
         }
         
-        UIView.animateWithDuration( NSTimeInterval(duration),
-                                    delay: NSTimeInterval(delay),
+        UIView.animate( withDuration: TimeInterval(duration),
+                                    delay: TimeInterval(delay),
                                     usingSpringWithDamping: damping,
                                     initialSpringVelocity: velocity,
-                                    options: [getAnimationOptions(curve), UIViewAnimationOptions.AllowUserInteraction],
+                                    options: [getAnimationOptions(curve), UIViewAnimationOptions.allowUserInteraction],
                                     animations: { [weak self] in
                                         if let _self = self
                                         {
                                             if _self.animateFrom {
-                                                _self.transform = CGAffineTransformIdentity
+                                                _self.transform = CGAffineTransform.identity
                                                 _self.alpha = 1
                                             }
                                             else {
-                                                let translate = CGAffineTransformMakeTranslation(_self.x, _self.y)
-                                                let scale = CGAffineTransformMakeScale(1, 1)
-                                                let rotate = CGAffineTransformMakeRotation(_self.rotate)
-                                                let translateAndScale = CGAffineTransformConcat(translate, scale)
-                                                _self.transform = CGAffineTransformConcat(rotate, translateAndScale)
+                                                let translate = CGAffineTransform(translationX: _self.x, y: _self.y)
+                                                let scale = CGAffineTransform(scaleX: 1, y: 1)
+                                                let rotate = CGAffineTransform(rotationAngle: _self.rotate)
+                                                let translateAndScale = translate.concatenating(scale)
+                                                _self.transform = rotate.concatenating(translateAndScale)
                                                 
                                                 _self.alpha = _self.opacity
                                             }
@@ -118,8 +118,8 @@ class SACircleView: UIView {
             })
         
     }
-    func getAnimationOptions(curve: String) -> UIViewAnimationOptions {
-        return UIViewAnimationOptions.CurveLinear
+    func getAnimationOptions(_ curve: String) -> UIViewAnimationOptions {
+        return UIViewAnimationOptions.curveLinear
     }
     func resetAllForBallView() {
         x = 0
