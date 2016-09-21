@@ -28,19 +28,19 @@ public protocol SAPinViewControllerDelegate {
     
     /// Ask the implementer to see whether the PIN is valid or not
     /// required and must be implemented
-    func isPinValid(pin: String) -> Bool
+    func isPinValid(_ pin: String) -> Bool
 }
 
 /// SAPinViewController
 /// Use this class to instantiate a PIN screen
 /// Set each one of its property for customisation
 /// N.B: UNLY use the Designate initialaiser
-public class SAPinViewController: UIViewController {
+open class SAPinViewController: UIViewController {
     
     ///  Set this to customise the border colour around the dots
     /// This will set the dots fill colour as well
     /// Default is white colour
-    public var circleBorderColor: UIColor! {
+    open var circleBorderColor: UIColor! {
         didSet {
             if circleViews.count > 0 {
                 for i in 0...3 {
@@ -52,7 +52,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to change the font of PIN numbers and alphabet
     /// Note that the maximum font size for numbers are 30.0 and for alphabets are 10.0
-    public var font: UIFont! {
+    open var font: UIFont! {
         didSet {
             if buttons.count > 0 {
                 for i in 0...9 {
@@ -63,7 +63,7 @@ public class SAPinViewController: UIViewController {
     }
     
     /// Set this if you want to hide the alphabets - default is to show alphabet
-    public var showAlphabet: Bool! {
+    open var showAlphabet: Bool! {
         didSet {
             if buttons.count > 0 {
                 for i in 0...9 {
@@ -75,7 +75,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise the border colour around the PIN numbers
     /// Default is white
-    public var buttonBorderColor: UIColor! {
+    open var buttonBorderColor: UIColor! {
         didSet {
             if buttons.count > 0 {
                 for i in 0...9 {
@@ -87,7 +87,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise the PIN numbers colour
     /// Default is white
-    public var numberColor: UIColor! {
+    open var numberColor: UIColor! {
         didSet {
             if buttons.count > 0 {
                 for i in 0...9 {
@@ -99,7 +99,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise the alphabet colour
     /// Default is white
-    public var alphabetColor: UIColor! {
+    open var alphabetColor: UIColor! {
         didSet {
             if buttons.count > 0 {
                 for i in 0...9 {
@@ -111,7 +111,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to add subtitle text for the `SAPinViewController`
     /// Default is empty String
-    public var subtitleText: String! {
+    open var subtitleText: String! {
         didSet {
             if subtitleLabel != nil {
                 subtitleLabel.text = subtitleText
@@ -123,7 +123,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to add title text for the `SAPinViewController`
     /// Default is "Enter Passcode"
-    public var titleText: String! {
+    open var titleText: String! {
         didSet {
             if titleLabel != nil {
                 titleLabel.text = titleText
@@ -134,7 +134,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise subtitle text colour for the `SAPinViewController`
     /// Default is white
-    public var subtitleTextColor: UIColor! {
+    open var subtitleTextColor: UIColor! {
         didSet {
             if subtitleLabel != nil {
                 subtitleLabel.textColor = subtitleTextColor
@@ -144,7 +144,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise title text colour for the `SAPinViewController`
     /// Default is white
-    public var titleTextColor: UIColor! {
+    open var titleTextColor: UIColor! {
         didSet {
             if titleLabel != nil {
                 titleLabel.textColor = titleTextColor
@@ -154,7 +154,7 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise `Cancel` button text colour
     /// Default is white
-    public var cancelButtonColor: UIColor! {
+    open var cancelButtonColor: UIColor! {
         didSet {
             if cancelButton != nil {
                 let font = UIFont(name: SAPinConstant.DefaultFontName, size: 17)
@@ -165,17 +165,17 @@ public class SAPinViewController: UIViewController {
     
     /// Set this to customise `Cancel` button text font
     /// Maximum font size is 17.0
-    public var cancelButtonFont: UIFont! {
+    open var cancelButtonFont: UIFont! {
         didSet {
             if cancelButton != nil {
-                let font = cancelButtonFont.fontWithSize(17)
-                setAttributedTitleForButtonWithTitle(SAPinConstant.CancelString, font: font, color: cancelButtonColor ?? UIColor.whiteColor())
+                let font = cancelButtonFont.withSize(17)
+                setAttributedTitleForButtonWithTitle(SAPinConstant.CancelString, font: font, color: cancelButtonColor ?? UIColor.white)
             }
         }
     }
     
     /// Set this to `true` to get rounded rect boarder style
-    public var isRoundedRect: Bool! {
+    open var isRoundedRect: Bool! {
         didSet {
             if let safeIsRoundedRect = isRoundedRect {
                 if buttons.count > 0 {
@@ -192,19 +192,19 @@ public class SAPinViewController: UIViewController {
         }
     }
     
-    private var blurView: UIVisualEffectView!
-    private var numPadView: UIView!
-    private var buttons: [SAButtonView]! = []
-    private var circleViews: [SACircleView]! = []
-    private var dotContainerView: UIView!
-    private var titleLabel: UILabel!
-    private var subtitleLabel: UILabel!
-    private var cancelButton: UIButton!
-    private var dotContainerWidth: CGFloat = 0
-    private var tappedButtons: [Int] = []
-    private var delegate: SAPinViewControllerDelegate?
-    private var backgroundImage: UIImage!
-    private var logoImage: UIImage!
+    fileprivate var blurView: UIVisualEffectView!
+    fileprivate var numPadView: UIView!
+    fileprivate var buttons: [SAButtonView]! = []
+    fileprivate var circleViews: [SACircleView]! = []
+    fileprivate var dotContainerView: UIView!
+    fileprivate var titleLabel: UILabel!
+    fileprivate var subtitleLabel: UILabel!
+    fileprivate var cancelButton: UIButton!
+    fileprivate var dotContainerWidth: CGFloat = 0
+    fileprivate var tappedButtons: [Int] = []
+    fileprivate var delegate: SAPinViewControllerDelegate?
+    fileprivate var backgroundImage: UIImage!
+    fileprivate var logoImage: UIImage!
     
     /// Designate initialaiser
     ///
@@ -243,30 +243,30 @@ public class SAPinViewController: UIViewController {
         dotContainerWidth = 3 * SAPinConstant.ButtonWidth + 2 * SAPinConstant.ButtonPadding
         
         numPadView = UIView()
-        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .Light))
+        blurView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
         if backgroundImage != nil {
             let imageView = UIImageView(image: backgroundImage)
-            imageView.contentMode = .ScaleAspectFit
+            imageView.contentMode = .scaleAspectFit
             view.addSubview(imageView)
-            imageView.snp_makeConstraints(closure: { (make) in
+            imageView.snp.makeConstraints({ (make) in
                 make.edges.equalTo(view)
             })
         }
         view.addSubview(blurView)
-        view.bringSubviewToFront(blurView)
-        blurView.snp_makeConstraints { (make) in
+        view.bringSubview(toFront: blurView)
+        blurView.snp.makeConstraints { (make) in
             make.edges.equalTo(self.view)
         }
         blurView.contentView.addSubview(numPadView)
         
-        numPadView.snp_makeConstraints { (make) in
+        numPadView.snp.makeConstraints { (make) in
             make.width.equalTo(dotContainerWidth)
             make.height.equalTo(4 * SAPinConstant.ButtonWidth + 3 * SAPinConstant.ButtonPadding)
-            make.centerX.equalTo(blurView.snp_centerX)
+            make.centerX.equalTo(blurView.snp.centerX)
             if logoImage != nil {
-                make.centerY.equalTo(blurView.snp_centerY).offset(2*SAPinConstant.ButtonPadding + SAPinConstant.LogoImageWidth)
+                make.centerY.equalTo(blurView.snp.centerY).offset(2*SAPinConstant.ButtonPadding + SAPinConstant.LogoImageWidth)
             } else {
-                make.centerY.equalTo(blurView.snp_centerY).offset(2*SAPinConstant.ButtonPadding)
+                make.centerY.equalTo(blurView.snp.centerY).offset(2*SAPinConstant.ButtonPadding)
             }
         }
         // Add buttons
@@ -291,7 +291,7 @@ public class SAPinViewController: UIViewController {
         addCancelButton()
     }
     // MARK: Private methods
-    private func addButtons() {
+    fileprivate func addButtons() {
         for i in 0...9 {
             let btnView = SAButtonView(frame: CGRect(x: 0, y: 0, width: SAPinConstant.ButtonWidth, height: SAPinConstant.ButtonWidth))
             btnView.numberTag = i
@@ -301,62 +301,62 @@ public class SAPinViewController: UIViewController {
         }
     }
     
-    private func layoutButtons() {
+    fileprivate func layoutButtons() {
         for i in 0...9 {
-            buttons[i].snp_makeConstraints(closure: { (make) in
+            buttons[i].snp.makeConstraints({ (make) in
                 make.width.equalTo(SAPinConstant.ButtonWidth)
                 make.height.equalTo(SAPinConstant.ButtonWidth)
             })
         }
-        buttons[2].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top)
-            make.centerX.equalTo(numPadView.snp_centerX)
+        buttons[2].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top)
+            make.centerX.equalTo(numPadView.snp.centerX)
         }
-        buttons[5].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding)
-            make.centerX.equalTo(numPadView.snp_centerX)
+        buttons[5].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding)
+            make.centerX.equalTo(numPadView.snp.centerX)
         }
-        buttons[8].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(2*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
-            make.centerX.equalTo(numPadView.snp_centerX)
+        buttons[8].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(2*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
+            make.centerX.equalTo(numPadView.snp.centerX)
         }
-        buttons[0].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(3*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
-            make.centerX.equalTo(numPadView.snp_centerX)
+        buttons[0].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(3*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
+            make.centerX.equalTo(numPadView.snp.centerX)
         }
-        buttons[1].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top)
+        buttons[1].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top)
             make.left.equalTo(numPadView)
         }
-        buttons[3].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top)
+        buttons[3].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top)
             make.right.equalTo(numPadView)
         }
-        buttons[4].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding)
+        buttons[4].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding)
             make.left.equalTo(numPadView)
         }
-        buttons[6].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding)
+        buttons[6].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding)
             make.right.equalTo(numPadView)
         }
-        buttons[7].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(2*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
+        buttons[7].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(2*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
             make.left.equalTo(numPadView)
         }
-        buttons[9].snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(2*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
+        buttons[9].snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(2*(SAPinConstant.ButtonWidth + SAPinConstant.ButtonPadding))
             make.right.equalTo(numPadView)
         }
     }
-    private func addCircles() {
+    fileprivate func addCircles() {
         dotContainerView = UIView()
         blurView.contentView.addSubview(dotContainerView)
-        dotContainerView.snp_makeConstraints { (make) in
-            make.top.equalTo(numPadView.snp_top).offset(-2*SAPinConstant.ButtonPadding)
+        dotContainerView.snp.makeConstraints { (make) in
+            make.top.equalTo(numPadView.snp.top).offset(-2*SAPinConstant.ButtonPadding)
             make.height.equalTo(20)
             make.width.equalTo(3*SAPinConstant.ButtonWidth + 2*SAPinConstant.ButtonPadding)
-            make.centerX.equalTo(numPadView.snp_centerX)
+            make.centerX.equalTo(numPadView.snp.centerX)
         }
         
         for _ in 0...3 {
@@ -366,92 +366,92 @@ public class SAPinViewController: UIViewController {
             circleViews.append(aBall)
         }
     }
-    private func layoutCircles() {
+    fileprivate func layoutCircles() {
         for i in 0...3 {
-            circleViews[i].snp_makeConstraints(closure: { (make) in
+            circleViews[i].snp.makeConstraints({ (make) in
                 make.width.equalTo(SAPinConstant.CircleWidth)
                 make.height.equalTo(SAPinConstant.CircleWidth)
             })
         }
         let dotLeading = (dotContainerWidth - 3*SAPinConstant.ButtonPadding - 4*SAPinConstant.CircleWidth)/2.0
-        circleViews[0].snp_makeConstraints { (make) in
+        circleViews[0].snp.makeConstraints { (make) in
             make.leading.equalTo(dotContainerView).offset(dotLeading)
             make.top.equalTo(dotContainerView)
         }
-        circleViews[3].snp_makeConstraints { (make) in
+        circleViews[3].snp.makeConstraints { (make) in
             make.trailing.equalTo(dotContainerView).offset(-dotLeading)
             make.top.equalTo(dotContainerView)
         }
-        circleViews[2].snp_makeConstraints { (make) in
+        circleViews[2].snp.makeConstraints { (make) in
             make.trailing.equalTo(circleViews[3]).offset(-1.45*SAPinConstant.ButtonPadding)
             make.top.equalTo(dotContainerView)
         }
-        circleViews[1].snp_makeConstraints { (make) in
+        circleViews[1].snp.makeConstraints { (make) in
             make.leading.equalTo(circleViews[0]).offset(1.45*SAPinConstant.ButtonPadding)
             make.top.equalTo(dotContainerView)
         }
     }
-    private func addSubtitle() {
+    fileprivate func addSubtitle() {
         subtitleLabel = UILabel()
         subtitleLabel.numberOfLines = 0
         subtitleLabel.font = UIFont(name: SAPinConstant.DefaultFontName, size: 13.0)
-        subtitleLabel.textAlignment = .Center
-        subtitleLabel.textColor = UIColor.whiteColor()
+        subtitleLabel.textAlignment = .center
+        subtitleLabel.textColor = UIColor.white
         blurView.addSubview(subtitleLabel)
         updateSubtitle()
     }
-    private func updateSubtitle() {
+    fileprivate func updateSubtitle() {
         subtitleLabel.text = subtitleText
-        subtitleLabel.snp_remakeConstraints { (make) in
+        subtitleLabel.snp.remakeConstraints { (make) in
             make.width.equalTo(dotContainerWidth)
-            make.bottom.equalTo(dotContainerView.snp_top).offset(-5)
-            make.centerX.equalTo(blurView.snp_centerX)
+            make.bottom.equalTo(dotContainerView.snp.top).offset(-5)
+            make.centerX.equalTo(blurView.snp.centerX)
         }
     }
-    private func addTitle() {
+    fileprivate func addTitle() {
         titleLabel = UILabel()
         titleLabel.numberOfLines = 1
         titleLabel.font = UIFont(name: SAPinConstant.DefaultFontName, size: 17.0)
-        titleLabel.textAlignment = .Center
-        titleLabel.textColor = UIColor.whiteColor()
+        titleLabel.textAlignment = .center
+        titleLabel.textColor = UIColor.white
         blurView.addSubview(titleLabel)
         updateTitle()
     }
-    private func updateTitle() {
+    fileprivate func updateTitle() {
         titleLabel.text = titleText ?? "Enter Passcode"
-        titleLabel.snp_remakeConstraints { (make) in
+        titleLabel.snp.remakeConstraints { (make) in
             make.width.equalTo(dotContainerWidth)
             if subtitleLabel.text == "" {
-                make.bottom.equalTo(dotContainerView.snp_top).offset(-17)
+                make.bottom.equalTo(dotContainerView.snp.top).offset(-17)
             } else {
-                make.bottom.equalTo(subtitleLabel.snp_top).offset(-5)
+                make.bottom.equalTo(subtitleLabel.snp.top).offset(-5)
             }
-            make.centerX.equalTo(blurView.snp_centerX)
+            make.centerX.equalTo(blurView.snp.centerX)
         }
     }
-    private func addLogo() {
+    fileprivate func addLogo() {
         let logoImageView = UIImageView(image: logoImage)
         blurView.addSubview(logoImageView)
-        logoImageView.contentMode = .ScaleAspectFit
+        logoImageView.contentMode = .scaleAspectFit
         logoImageView.layer.cornerRadius = SAPinConstant.LogoImageWidth/2.0
         logoImageView.clipsToBounds = true
-        logoImageView.snp_makeConstraints { (make) in
+        logoImageView.snp.makeConstraints { (make) in
             make.width.equalTo(SAPinConstant.LogoImageWidth)
             make.height.equalTo(SAPinConstant.LogoImageWidth)
-            make.centerX.equalTo(blurView.snp_centerX)
-            make.bottom.equalTo(titleLabel.snp_top).offset(-8)
+            make.centerX.equalTo(blurView.snp.centerX)
+            make.bottom.equalTo(titleLabel.snp.top).offset(-8)
         }
     }
-    private func addCancelButton() {
-        cancelButton = UIButton(type: .Custom)
+    fileprivate func addCancelButton() {
+        cancelButton = UIButton(type: .custom)
         cancelButtonColor = titleLabel.textColor
         cancelButtonFont = titleLabel.font
         setAttributedTitleForButtonWithTitle(SAPinConstant.CancelString, font: cancelButtonFont, color: cancelButtonColor)
-        cancelButton.addTarget(self, action: #selector(self.cancelDeleteTap), forControlEvents: .TouchUpInside)
+        cancelButton.addTarget(self, action: #selector(self.cancelDeleteTap), for: .touchUpInside)
         blurView.addSubview(cancelButton)
-        cancelButton.snp_makeConstraints { (make) in
-            make.trailing.equalTo(numPadView.snp_trailing)
-            if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+        cancelButton.snp.makeConstraints { (make) in
+            make.trailing.equalTo(numPadView.snp.trailing)
+            if UIDevice.current.userInterfaceIdiom == .phone {
                 // 3.5" special case 
                 if isSmallScreen() {
                     make.bottom.equalTo(numPadView)
@@ -481,31 +481,31 @@ public class SAPinViewController: UIViewController {
             delegate?.pinEntryWasCancelled()
         }
     }
-    private func isSmallScreen() -> Bool {
-        return UIScreen.mainScreen().bounds.height == 480
+    fileprivate func isSmallScreen() -> Bool {
+        return UIScreen.main.bounds.height == 480
     }
-    private func setAttributedTitleForButtonWithTitle(title: String, font: UIFont, color: UIColor) {
-        cancelButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSFontAttributeName:font,NSForegroundColorAttributeName:color]), forState: .Normal)
+    fileprivate func setAttributedTitleForButtonWithTitle(_ title: String, font: UIFont, color: UIColor) {
+        cancelButton.setAttributedTitle(NSAttributedString(string: title, attributes: [NSFontAttributeName:font,NSForegroundColorAttributeName:color]), for: UIControlState())
     }
-    private func pinErrorAnimate() {
+    fileprivate func pinErrorAnimate() {
         for item in circleViews {
-            UIView.animateWithDuration(0.1, animations: {
-                item.backgroundColor = item.circleBorderColor.colorWithAlphaComponent(0.7)
+            UIView.animate(withDuration: 0.1, animations: {
+                item.backgroundColor = item.circleBorderColor.withAlphaComponent(0.7)
                 
                 }, completion: { finished in
-                    UIView.animateWithDuration(0.5, animations: {
-                        item.backgroundColor = UIColor.clearColor()
+                    UIView.animate(withDuration: 0.5, animations: {
+                        item.backgroundColor = UIColor.clear
                     })
             })
         }
         animateView()
     }
-    private func animateView() {
+    fileprivate func animateView() {
         setOptions()
         animate()
     }
     
-    private func setOptions() {
+    fileprivate func setOptions() {
         for item in circleViews {
             item.force = 2.2
             item.duration = 1
@@ -516,7 +516,7 @@ public class SAPinViewController: UIViewController {
         }
     }
     
-    private func animate() {
+    fileprivate func animate() {
         for item in circleViews {
             item.animateFrom = true
             item.animatePreset()
@@ -527,7 +527,7 @@ public class SAPinViewController: UIViewController {
 }
 
 extension SAPinViewController: SAButtonViewDelegate {
-    func buttonTappedWithTag(tag: Int) {
+    func buttonTappedWithTag(_ tag: Int) {
         if tappedButtons.count < 4 {
             circleViews[tappedButtons.count].animateTapFull()
             tappedButtons.append(tag)
