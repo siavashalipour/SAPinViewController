@@ -105,5 +105,5 @@ Siavash, siavash@siavashalipour.com
 
 SAPinViewController is available under the MIT license. See the LICENSE file for more info.
 
-## License
+## Contribution
 If you have any feature requests or bug-fixes feel free to create an issue or send a pull request. 
