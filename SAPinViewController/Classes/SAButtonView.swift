@@ -153,7 +153,25 @@ class SAButtonView: UIView {
         btn.snp.makeConstraints { (make) in
             make.edges.equalTo(self)
         }
+        btn.addTarget(self, action: #selector(self.btnDown), for: .touchDown)
         btn.addTarget(self, action: #selector(self.btnTap), for: .touchUpInside)
+        btn.addTarget(self, action: #selector(self.btnCancel), for: .touchCancel)
+        btn.addTarget(self, action: #selector(self.btnCancel), for: .touchDragExit)
+        btn.addTarget(self, action: #selector(self.btnDown), for: .touchDragEnter)
+    }
+    
+    func btnDown() {
+        UIView.animate(withDuration: 0.17, delay: 0, options: .curveEaseIn, animations: {
+            self.backgroundColor = self.buttonBorderColor.withAlphaComponent(0.4)
+        })
+    }
+    
+    func btnCancel() {
+        UIView.animate(withDuration: 0.17, delay: 0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.17, delay: 0.1, options: .curveEaseOut, animations: {
+                self.backgroundColor = UIColor.clear
+            })
+        })
     }
     
     func btnTap() {
@@ -164,7 +182,7 @@ class SAButtonView: UIView {
             if isFinish {
                 UIView.animate(withDuration: 0.17, delay: 0.1, options: .curveEaseOut, animations: {
                     self.backgroundColor = UIColor.clear
-                    }, completion: nil)
+                }, completion: nil)
             }
         }
     }

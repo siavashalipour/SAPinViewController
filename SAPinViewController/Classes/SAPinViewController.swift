@@ -231,6 +231,7 @@ open class SAPinViewController: UIViewController {
                 self.logoImage = safeLogoImage
             }
         }
+        self.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.setupUI()
     }
     
@@ -397,7 +398,7 @@ open class SAPinViewController: UIViewController {
         subtitleLabel.font = UIFont(name: SAPinConstant.DefaultFontName, size: 13.0)
         subtitleLabel.textAlignment = .center
         subtitleLabel.textColor = UIColor.white
-        blurView.addSubview(subtitleLabel)
+        blurView.contentView.addSubview(subtitleLabel)
         updateSubtitle()
     }
     fileprivate func updateSubtitle() {
@@ -414,7 +415,7 @@ open class SAPinViewController: UIViewController {
         titleLabel.font = UIFont(name: SAPinConstant.DefaultFontName, size: 17.0)
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
-        blurView.addSubview(titleLabel)
+        blurView.contentView.addSubview(titleLabel)
         updateTitle()
     }
     fileprivate func updateTitle() {
@@ -431,7 +432,7 @@ open class SAPinViewController: UIViewController {
     }
     fileprivate func addLogo() {
         let logoImageView = UIImageView(image: logoImage)
-        blurView.addSubview(logoImageView)
+        blurView.contentView.addSubview(logoImageView)
         logoImageView.contentMode = .scaleAspectFit
         logoImageView.layer.cornerRadius = SAPinConstant.LogoImageWidth/2.0
         logoImageView.clipsToBounds = true
@@ -448,7 +449,7 @@ open class SAPinViewController: UIViewController {
         cancelButtonFont = titleLabel.font
         setAttributedTitleForButtonWithTitle(SAPinConstant.CancelString, font: cancelButtonFont, color: cancelButtonColor)
         cancelButton.addTarget(self, action: #selector(self.cancelDeleteTap), for: .touchUpInside)
-        blurView.addSubview(cancelButton)
+        blurView.contentView.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { (make) in
             make.trailing.equalTo(numPadView.snp.trailing)
             if UIDevice.current.userInterfaceIdiom == .phone {
