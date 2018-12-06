@@ -12,7 +12,7 @@ import SnapKit
 /// SAPinViewControllerDelegate
 /// Any ViewController that would like to present `SAPinViewController` should implement
 /// all these protocol methods
-public protocol SAPinViewControllerDelegate {
+public protocol SAPinViewControllerDelegate: class {
     
     /// Gets called upon tapping on `Cancel` button 
     /// required and must be implemented
@@ -202,7 +202,7 @@ open class SAPinViewController: UIViewController {
     fileprivate var cancelButton: UIButton!
     fileprivate var dotContainerWidth: CGFloat = 0
     fileprivate var tappedButtons: [Int] = []
-    fileprivate var delegate: SAPinViewControllerDelegate?
+    fileprivate weak var delegate: SAPinViewControllerDelegate?
     fileprivate var backgroundImage: UIImage!
     fileprivate var logoImage: UIImage!
     
