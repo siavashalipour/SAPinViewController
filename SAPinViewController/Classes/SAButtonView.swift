@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol SAButtonViewDelegate {
+protocol SAButtonViewDelegate: class {
     
     func buttonTappedWithTag(_ tag: Int)
 }
 
 class SAButtonView: UIView {
     
-    var delegate: SAButtonViewDelegate?
+    weak var delegate: SAButtonViewDelegate?
     
     var font: UIFont! {
         didSet {
